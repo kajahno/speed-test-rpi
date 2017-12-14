@@ -19,7 +19,7 @@ function log() {
     echo "${currDate}   -   ${msg}"
 
     mkdir -p logs
-    echo "${currDate}   -   ${msg}" > ${log_file}-${currDay}.log
+    echo "${currDate}   -   ${msg}" >> logs/${log_file}-${currDay}.log
 }
 
 log "TableData updater started"

@@ -1,0 +1,109 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+#index-banner {
+
+  background-image: linear-gradient(120deg, #155799, #159957);  
+
+}
+
+.page-footer {
+  background-image: linear-gradient(120deg, #156957, #156957);  
+}
+
+.footer-copyright {
+  background-image: linear-gradient(120deg, #159957, #159957);  
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: white;
+}
+
+#section-one {
+  color: #606c71;  
+}
+
+a {
+  color: #1e6bb8;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn-large {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0.3rem;
+  transition: color 0.2s, rgba(255, 255, 255, 0.08) 0.2s, rgba(255, 255, 255, 0.2) 0.2s;
+}
+
+.btn-large:hover {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+
+
+/* // Breakpoints
+$large-breakpoint: 64em !default;
+$medium-breakpoint: 42em !default;
+
+// Headers
+$header-heading-color: #fff !default;
+$header-bg-color: #159957 !default;
+$header-bg-color-secondary: #155799 !default;
+
+// Text
+$section-headings-color: #159957 !default;
+$body-text-color: #606c71 !default;
+$body-link-color: #1e6bb8 !default;
+$blockquote-text-color: #819198 !default;
+
+// Code
+$code-bg-color: #f3f6fa !default;
+$code-text-color: #567482 !default;
+
+// Borders
+$border-color: #dce6f0 !default;
+$table-border-color: #e9ebec !default;
+$hr-border-color: #eff0f1 !default; */

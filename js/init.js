@@ -3,8 +3,6 @@
 
     $('.button-collapse').sideNav();
 
-    var getUrl = window.location;
-
     $.getJSON( "http://kajahno.me/speed-test-rpi/node/tableData.js", function( data ) {
       var items = [];
       
@@ -78,7 +76,22 @@
                         labelString: 'Mbps'
                     }
                 }]
-            }
+            },
+            pan: {
+              // Boolean to enable panning
+              enabled: true,
+  
+              // Panning directions. Remove the appropriate direction to disable 
+              // Eg. 'y' would only allow panning in the y direction
+              mode: 'xy'
+            },
+            zoom: {
+              // Boolean to enable zooming
+              enabled: true,
+              // Zooming directions. Remove the appropriate direction to disable 
+              // Eg. 'y' would only allow zooming in the y direction
+              mode: 'xy'
+            }            
         }
       });
 
@@ -93,6 +106,7 @@
               datasets: [{
                 label: "Upload Speed",
                 borderColor: 'rgb(255, 230, 132)',
+                backgroundColor: 'rgb(255, 230, 132)',
                 data: valUpload,
                 fill: false,
               }]
@@ -142,6 +156,7 @@
               datasets: [{
                 label: "Latency (ping)",
                 borderColor: 'rgb(255, 99, 255)',
+                backgroundColor: 'rgb(255, 99, 255)',
                 data: valPing,
                 fill: false,
               }]
@@ -200,11 +215,13 @@
               },{
                 label: "Upload Speed",
                 borderColor: 'rgb(255, 230, 132)',
+                backgroundColor: 'rgb(255, 230, 132)',
                 data: valUpload,
                 fill: false,
               },{
                 label: "Ping",
                 borderColor: 'rgb(255, 99, 255)',
+                backgroundColor: 'rgb(255, 99, 255)',
                 data: valPing,
                 fill: false,
                 yAxisID: "Latency (msec)"

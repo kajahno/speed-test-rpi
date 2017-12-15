@@ -6,35 +6,57 @@
 
     $.getJSON( "../node/tableData.js", function( data ) {
       var items = [];
+      
+      data.sort(function(a,b){
+        return a["reqDate"] - b["reqDate"];
+      });
+      
+      var valLabels = [];
+      var valDownload = [];
+      var valUpload = [];
+      var valPing = [];
+
+
+      
       $.each( data, function( key, val ) {
-        items.push( "<li id='" + key + "'>" + val + "</li>" );
+        valLabels.push(val["reqDate"]);
+        valDownload.push(val["data"]["speeds"]["download"])
+        valUpload.push(val["data"]["speeds"]["upload"])
+        valPing.push(val["data"]["server"]["ping"])
       });
      
-      $( "<ul/>", {
-        "class": "my-new-list",
-        html: items.join( "" )
-      }).appendTo( "body" );
-    });
+      console.log(valLabels);
+      console.log(valDownload);
+      console.log(valUpload);
+      console.log(valPing);
+
+      var ctx = document.getElementById('speed-chart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+      
+          // The data for our dataset
+          data: {
+              labels: valLabels,
+              datasets: [{
+                  label: "Download Speed",
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: valDownload,
+              },{
+                label: "Upload Speed",
+                borderColor: 'rgb(255, 230, 132)',
+                data: valDownload,
+              },{
+                label: "Ping",
+                borderColor: 'rgb(255, 99, 255)',
+                data: valDownload,
+              }]
+          },      
+          // Configuration options go here
+          options: {}
+      });
 
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-    
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: "My First dataset",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-            }]
-        },
-    
-        // Configuration options go here
-        options: {}
     });
 
 

@@ -20,7 +20,8 @@
 
       
       $.each( data, function( key, val ) {
-        valLabels.push(val["reqDate"]);
+        var sampleDate = new Date(val["reqDate"]);
+        valLabels.push(sampleDate.toLocaleString('en-GB'));
         valDownload.push(val["data"]["speeds"]["download"])
         valUpload.push(val["data"]["speeds"]["upload"])
         valPing.push(val["data"]["server"]["ping"])
@@ -31,7 +32,7 @@
       console.log(valUpload);
       console.log(valPing);
 
-      var ctx = document.getElementById('speed-chart').getContext('2d');
+      var ctx = document.getElementById('download-speed-chart').getContext('2d');
       var chart = new Chart(ctx, {
           // The type of chart we want to create
           type: 'line',
@@ -42,21 +43,217 @@
               datasets: [{
                   label: "Download Speed",
                   borderColor: 'rgb(255, 99, 132)',
+                  backgroundColor: 'rgb(255, 99, 132)',
                   data: valDownload,
-              },{
-                label: "Upload Speed",
-                borderColor: 'rgb(255, 230, 132)',
-                data: valDownload,
-              },{
-                label: "Ping",
-                borderColor: 'rgb(255, 99, 255)',
-                data: valDownload,
+                  fill: false,
               }]
           },      
           // Configuration options go here
-          options: {}
+          options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'Download Speed (higher is better)'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date Taken'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mbps'
+                    }
+                }]
+            }
+        }
       });
 
+      var ctx = document.getElementById('upload-speed-chart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+      
+          // The data for our dataset
+          data: {
+              labels: valLabels,
+              datasets: [{
+                label: "Upload Speed",
+                borderColor: 'rgb(255, 230, 132)',
+                data: valUpload,
+                fill: false,
+              }]
+          },      
+          // Configuration options go here
+          options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'Upload Speed (higher is better)'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date Taken'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Mbps'
+                    }
+                }]
+            }
+        }
+      });
+
+      var ctx = document.getElementById('ping-speed-chart').getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+      
+          // The data for our dataset
+          data: {
+              labels: valLabels,
+              datasets: [{
+                label: "Latency (ping)",
+                borderColor: 'rgb(255, 99, 255)',
+                data: valPing,
+                fill: false,
+              }]
+          },      
+          // Configuration options go here
+          options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'Latency (lower is better)'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date Taken'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'milliseconds'
+                    }
+                }]
+            }
+        }
+      });
+      
+
+      var ctx = document.getElementById('all-speed-chart').getContext('2d');
+
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'line',
+      
+          // The data for our dataset
+          data: {
+              labels: valLabels,
+              datasets: [{
+                  label: "Download Speed",
+                  borderColor: 'rgb(255, 99, 132)',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  data: valDownload,
+                  fill: false,
+                  yAxisID: "Speed (Mbps)",
+              },{
+                label: "Upload Speed",
+                borderColor: 'rgb(255, 230, 132)',
+                data: valUpload,
+                fill: false,
+              },{
+                label: "Ping",
+                borderColor: 'rgb(255, 99, 255)',
+                data: valPing,
+                fill: false,
+                yAxisID: "Latency (msec)"
+              }]
+          },      
+          // Configuration options go here
+          options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'All speeds'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date Taken'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Kbps'
+                    },
+                    position: "left",
+                    id: "Speed (Mbps)"
+                },
+                {
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'milliseconds'
+                  },
+                  position: "right",
+                  id: "Latency (msec)"
+                }]
+            }
+        }
+      });      
 
     });
 

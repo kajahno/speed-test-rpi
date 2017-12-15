@@ -3,8 +3,9 @@
 
     $('.button-collapse').sideNav();
 
+    var getUrl = window.location;
 
-    $.getJSON( "../node/tableData.js", function( data ) {
+    $.getJSON( getUrl + "../node/tableData.js", function( data ) {
       var items = [];
       
       data.sort(function(a,b){

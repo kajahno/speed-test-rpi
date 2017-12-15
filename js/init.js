@@ -5,7 +5,7 @@
 
     var getUrl = window.location;
 
-    $.getJSON( getUrl + "../node/tableData.js", function( data ) {
+    $.getJSON( "http://kajahno.me/speed-test-rpi/node/tableData.js", function( data ) {
       var items = [];
       
       data.sort(function(a,b){
